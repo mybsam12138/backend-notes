@@ -7,6 +7,13 @@ When working with databases, a common question is:
 I had the same confusion when refactoring legacy systems and migrating logic to Java.  
 This note summarizes **when database locks are enough, when they are not, and what optimistic locking really solves**, based on real backend work rather than theory.
 
+**Learn from this question:** 
+1. Business help: When a record may be modified by other users while someone is editing it, 
+the system must use a database optimistic lock (version field) to detect that the data has changed and force the user to reload the latest data before updating.
+
+2. Optimistic lock include DB and Java optimistic lock 
+Java optimistic lock = cas + spin(Like AtomicInteger)
+DB optimistic lock implmented by version field
 ---
 
 ## 1. Database locks: what they actually protect
