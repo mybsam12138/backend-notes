@@ -8,6 +8,7 @@ This article explains JDBC by clearly separating **core interfaces** from **supp
 **Help:**
 Understanding JDBC interfaces clarifies how databases execute SQL and 
 provides a solid foundation for understanding and reading the source code of ORM and datasource frameworks.
+
 ---
 
 ## 1. JDBC Is a Contract, Not a Framework
