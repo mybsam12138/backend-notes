@@ -1,7 +1,7 @@
 # JDBC Key Interfaces and Their Core Methods
 
 This article summarizes the **most important JDBC interfaces** and their **key methods**, focusing on what each method is responsible for and why it exists.  
-It also explains **how JDBC transactions actually work**, which is a common source of confusion.
+It also explains **how JDBC transactions and different statement types actually work**, which are common sources of confusion.
 
 Understanding these points is enough to read JDBC-related source code and to understand how higher-level frameworks work internally.
 
@@ -72,6 +72,7 @@ rollback()
 setReadOnly(boolean readOnly)
 prepareStatement(String sql)
 createStatement()
+prepareCall(String sql)
 ```
 
 ### What these methods really mean
@@ -88,6 +89,9 @@ createStatement()
 - `setReadOnly(true)`  
   Declares transactional intent for read-only operations; enforcement and optimization depend on the database.
 
+- `prepareCall(String sql)`  
+  Creates a `CallableStatement` for invoking stored procedures or functions.
+
 **Important clarification**
 
 > JDBC does NOT explicitly start transactions.  
@@ -95,10 +99,22 @@ createStatement()
 
 ---
 
-## 4. `java.sql.Statement` — SQL Execution Interface
+## 4. JDBC Statement Types Overview
+
+JDBC defines **three statement types**, each serving a different purpose:
+
+```text
+Statement
+   └─ PreparedStatement
+         └─ CallableStatement
+```
+
+---
+
+## 5. `java.sql.Statement` — Basic SQL Execution
 
 ### Role
-- Executes SQL statements
+- Executes static SQL strings
 - Returns results or update counts
 
 ### Key Methods
@@ -128,7 +144,7 @@ boolean execute(String sql)
 
 ---
 
-## 5. `java.sql.PreparedStatement` — Parameterized SQL Execution
+## 6. `java.sql.PreparedStatement` — Parameterized SQL Execution
 
 ### Role
 - Executes precompiled SQL with parameters
@@ -148,13 +164,60 @@ executeUpdate()
 - Enables execution plan reuse
 - Improves performance and safety
 
-**Key point**
+**Key points**
 - SQL structure is fixed
 - Parameters are sent as typed data, not executable SQL
+- Default statement type used by frameworks like MyBatis
 
 ---
 
-## 6. How JDBC Transactions Actually Work
+## 7. `java.sql.CallableStatement` — Stored Procedure Invocation
+
+### Role
+- Invokes stored procedures or database functions
+- Supports IN, OUT, and INOUT parameters
+
+### How it is created
+
+```java
+CallableStatement cs = connection.prepareCall("{CALL proc_name(?, ?)}");
+```
+
+### Key Methods
+
+```java
+registerOutParameter(int index, int sqlType)
+getInt(int index)
+getString(int index)
+execute()
+```
+
+### Key characteristics
+
+- Extends `PreparedStatement`
+- Allows bidirectional parameter binding
+- Can return:
+  - OUT parameters
+  - update counts
+  - result sets
+- Required for calling stored procedures
+
+### Framework behavior (MyBatis / MyBatis-Flex)
+
+- Default statement type is `PreparedStatement`
+- Stored procedures require explicit configuration:
+  ```xml
+  statementType="CALLABLE"
+  ```
+- Parameter modes (`IN`, `OUT`, `INOUT`) must be declared manually
+
+**Key insight**
+
+> Callable statements are intentionally less abstracted because stored procedures are database-specific and opaque to frameworks.
+
+---
+
+## 8. How JDBC Transactions Actually Work
 
 A common misunderstanding is expecting JDBC to explicitly start transactions.
 
@@ -183,22 +246,23 @@ COMMIT / ROLLBACK
 
 ---
 
-## 7. Responsibility Overview
+## 9. Responsibility Overview
 
 ```text
-Driver             → database protocol & connection creation
-DataSource         → connection factory & pooling
-Connection         → transaction boundaries and session state
-Statement          → SQL execution
-PreparedStatement  → safe, parameterized SQL execution
+Driver              → database protocol & connection creation
+DataSource          → connection factory & pooling
+Connection          → transaction boundaries and session state
+Statement           → basic SQL execution
+PreparedStatement   → safe, parameterized SQL execution
+CallableStatement   → stored procedure invocation
 ```
 
 Frameworks like Spring and MyBatis orchestrate these interfaces but do not replace them.
 
 ---
 
-## 8. Final Takeaway
+## 10. Final Takeaway
 
-> JDBC separates responsibilities clearly: drivers implement database behavior, `DataSource` provides connections, `Connection` controls transaction boundaries, and SQL execution implicitly triggers transaction start while commits and rollbacks finalize results.
+> JDBC separates responsibilities clearly: drivers implement database behavior, `DataSource` provides connections, `Connection` controls transaction boundaries, and different statement types handle SQL execution based on their semantics.
 
 Understanding this model removes much of the mystery around JDBC, transactions, and higher-level frameworks.
