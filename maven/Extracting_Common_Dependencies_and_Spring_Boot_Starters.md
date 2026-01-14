@@ -14,6 +14,8 @@ To solve this, I extracted **a parent POM + reusable Spring Boot starters**, for
 
 This article documents the **process, rules, and final structure**.
 
+code demo: https://github.com/mybsam12138?tab=packages
+
 ---
 
 ## Step 1: Introduce a Parent POM (`demo-parent`)
