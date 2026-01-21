@@ -7,7 +7,7 @@ behave in each case.
 
 ---
 
-## 1. Foreground Startup (前台运行)
+## 1. Foreground Startup 
 
 ### Command
 
@@ -38,7 +38,7 @@ java -jar app.jar
 
 ---
 
-## 2. Background Startup Using `&` (后台运行)
+## 2. Background Startup Using `&` 
 
 ### Command
 
@@ -68,7 +68,7 @@ java -jar app.jar &
 
 ---
 
-## 3. Background Startup Using `nohup` (脱离会话运行)
+## 3. Background Startup Using `nohup` 
 
 ### Command
 
