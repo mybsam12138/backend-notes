@@ -118,6 +118,12 @@ Infrastructure failure with mandatory cause.
 
 ---
 
+## Why `200 OK` makes sense for BizException
+
+### ✅ Use **200** when:
+
+The request is **valid**, processed correctly, and the server is **intentionally returning a business outcome**.
+
 ## 7. Key Rule
 
 > **HTTP status reflects system health**  
