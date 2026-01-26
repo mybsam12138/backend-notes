@@ -10,7 +10,7 @@ Each thread sees **its own independent value**, even though the variable itself 
 In short:
 
 > **Same variable, different value per thread**
-
+ 
 ---
 
 ## Basic Example
