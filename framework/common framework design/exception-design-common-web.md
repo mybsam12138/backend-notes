@@ -165,7 +165,7 @@ BizException is a Java exception, but **not** an HTTP error.
 
 ---
 
-## 8. 补充：i18n & Message Arguments（参数化消息）
+## 8.i18n & Message Arguments
 
 ### 8.1 Properties naming (language distinction)
 
