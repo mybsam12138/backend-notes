@@ -60,6 +60,7 @@ This is **not an extreme tuning**, but a **battle-tested baseline** used widely 
 -XX:+DisableExplicitGC
 
 -Duser.timezone=Asia/Shanghai
+-Dfile.encoding=UTF-8
 
 ```
 
