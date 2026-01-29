@@ -58,6 +58,9 @@ This is **not an extreme tuning**, but a **battle-tested baseline** used widely 
 # ================================
 -XX:+AlwaysPreTouch
 -XX:+DisableExplicitGC
+
+-Duser.timezone=Asia/Shanghai
+
 ```
 
 ---
