@@ -12,7 +12,7 @@ In Kubernetes, you do **not** tell the system *how* to do things step by step.
 
 Instead, you declare **what you want**:
 
-```yaml
+``` 
 replicas: 3
 ```
 
