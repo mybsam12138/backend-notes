@@ -10,7 +10,8 @@ This document summarizes *when Kubernetes makes sense* and *when it is likely ov
 
 Kubernetes is needed when:
 
-> **You need a control plane to manage multiple machines and application instances consistently.**
+> **You need a control plane to ma
+> nage multiple machines and application instances consistently.**
 
 It is *not* triggered by:
 - Microservices
