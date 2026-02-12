@@ -33,6 +33,7 @@ Win + R → services.msc
 | 更新协调器服务 | UsoSvc | 禁用 + 停止 |
 | 后台智能传送服务 | BITS | 禁用 + 停止 |
 | 传递优化 | DoSvc | 禁用 + 停止（可选） |
+| Windows更新医疗服务 | Windows Update Medic Service | 禁用 + 停止 |
 
 📌 This alone blocks **most automatic updates**.
 
