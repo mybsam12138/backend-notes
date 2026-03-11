@@ -26,6 +26,8 @@ Desktop Management Service
 ↓  
 Desktop Communication Service  
 ↓  
+Desktop Agent (inside VM)
+↓  
 Virtual Desktop (VM)
 
 Each service is responsible for a specific domain of functionality.
