@@ -8,7 +8,7 @@ Key principles:
 
 - The **WI Client** runs on the user PC and provides the interface and client logic.
 - The **WI Server** handles portal APIs and coordination with backend services.
-- The **HDC (Desktop Communication Service)** is the only service responsible for interacting with desktop VMs.
+- The **HDC (Desktop Control Service)** is the only service responsible for interacting with desktop VMs.
 - The **VGA (Access Gateway)** only transfers desktop session traffic and does not manage desktops.
 - Desktop sessions use a long-lived connection through the gateway.
 
@@ -77,7 +77,7 @@ The WI Server does not handle desktop session traffic.
 
 ---
 
-## 2.3 HDC (Desktop Communication Service)
+## 2.3 HDC (Desktop Control Service)
 
 The **HDC service** is the core desktop communication and control component.
 
