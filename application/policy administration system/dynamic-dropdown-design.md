@@ -34,7 +34,7 @@ GET /dropdown/{dropdownKey}
  ↓
 DropdownService
  ↓
-dropdown_config
+dropdown_config 
  ↓
 DICT or SERVICE
  ↓
