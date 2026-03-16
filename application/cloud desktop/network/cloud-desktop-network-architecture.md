@@ -297,8 +297,7 @@ flowchart TB
 %% ========================
 %% INTERNET
 %% ========================
-User["User PC
-Internet"]
+User["User PC (Internet)"]
 
 %% ========================
 %% VPC
@@ -348,7 +347,7 @@ subgraph Data["Data Subnet 10.20.20.0/24"]
 Redis["Redis Cluster
 10.20.20.11-13"]
 
-DB["Service Databases
+DB["Service DB Cluster
 10.20.20.21-24"]
 
 end
@@ -358,23 +357,23 @@ subgraph Desktop["Desktop Subnet 10.20.32.0/20"]
 
 VM["Desktop VM Pool
 10.20.32.0 - 10.20.47.255
-VM Agent inside"]
+VM Agent Installed"]
 
 end
 
 %% ---------- MGMT ----------
 subgraph Mgmt["Management Subnet 10.20.50.0/24"]
 
-Bastion["Bastion
+Bastion["Bastion Host
 10.20.50.10"]
 
-Monitor["Monitoring
+Monitor["Monitoring System
 10.20.50.20"]
 
-Logs["Logging
+Logs["Logging System
 10.20.50.21"]
 
-Backup["Backup
+Backup["Backup Service
 10.20.50.22"]
 
 end
@@ -386,11 +385,15 @@ end
 %% ========================
 
 User --> LB
-User --> VAG1
-User --> VAG2
-User --> VAG3
 
-LB --> WI
+LB --> VAG1
+LB --> VAG2
+LB --> VAG3
+
+VAG1 --> WI
+VAG2 --> WI
+VAG3 --> WI
+
 WI --> AUTH
 WI --> DMS
 DMS --> HDC
