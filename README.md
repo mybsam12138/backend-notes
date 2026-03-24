@@ -1,2 +1,2 @@
 # backend-notes
-Notes on backend engineering: JVM, databases, design patterns, and real-world insights.
+A structured knowledge base of backend engineering, covering Java internals, system design, cloud infrastructure, and real-world architectural trade-offs.
