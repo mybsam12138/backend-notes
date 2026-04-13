@@ -12,7 +12,7 @@ It represents **business-level logic**, not just a single action.
 ------------------------------------------------------------------------
 
 ## Skill vs Tool
-
+```
   Aspect           Skill                     Tool
   ---------------- ------------------------- -------------------------
   Level            High-level                Low-level
@@ -21,7 +21,7 @@ It represents **business-level logic**, not just a single action.
   Example          summarize_document        read_pdf
   Composition      Uses multiple tools       Standalone
   Responsibility   Decision + flow control   Execution only
-
+```
 ------------------------------------------------------------------------
 
 ## Example
