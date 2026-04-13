@@ -262,7 +262,7 @@ while (true) {
 
 ## 4. Tool result must be JSON
 - Clean
-- Structured
+- Structured 
 - Minimal
 
 ---
