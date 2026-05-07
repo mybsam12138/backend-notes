@@ -296,36 +296,3 @@ session.delete(dept);
 dept.getEmployees().remove(john);
 // → john deleted from DB ← triggered by removing from list
 ```
-
----
-
-## 10. Quick Reference Cheat Sheet
-
-```
-Standard JPA cascade types (6):
-  PERSIST  → save parent  → auto save children
-  MERGE    → update parent → auto update children
-  REMOVE   → delete parent → auto delete children ⚠️
-  REFRESH  → refresh parent → auto refresh children
-  DETACH   → detach parent → auto detach children
-  ALL      → all of the above combined
-
-Default: NO cascade (manage children manually)
-
-Common combinations:
-  ALL                    → simple apps, low risk data
-  PERSIST + MERGE        → enterprise, safe choice
-  PERSIST only           → financial systems, most controlled
-  None                   → audit logs, compliance records
-
-Golden rule:
-  More sensitive the data → less cascade → more manual control
-
-Financial system rule:
-  NEVER use REMOVE or ALL on financial records
-  Deleted data = compliance violation!
-```
-
----
-
-*Prepared for Java Developer interview preparation — OTC Derivatives / Financial Systems role*
